@@ -2,6 +2,7 @@ def santa_move(directions):
     x = 0
     y = 0
 
+    visited = set()
     cur_dir = "NORTH"
 
     transition_l = {"NORTH": "WEST",
@@ -23,14 +24,20 @@ def santa_move(directions):
         else:
             cur_dir = transition_r[cur_dir]
 
-        if cur_dir == "NORTH":
-            y += distance
-        if cur_dir == "SOUTH":
-            y -= distance
-        if cur_dir == "EAST":
-            x += distance
-        if cur_dir == "WEST":
-            x -= distance
+        for i in range(distance):
+            if (x, y) in visited:
+                break
+            else:
+                visited.add((x,y))
+
+            if cur_dir == "NORTH":
+                y += 1
+            if cur_dir == "SOUTH":
+                y -= 1
+            if cur_dir == "EAST":
+                x += 1
+            if cur_dir == "WEST":
+                x -= 1
 
     distance = abs(x - 0) + abs(y - 0)
     return distance

@@ -31,3 +31,12 @@ In the example above, 2 4 1 2 is seen again after four cycles, and so the answer
 How many cycles are in the infinite loop that arises from the configuration in your puzzle input?
 
 Your puzzle answer was 1695.
+
+
+What did I Learn?
+-----------------
+- Max/Min and other builtin functions have a key parameter that can take an lambda function
+- islice("ABCDE") provide sequence and start point
+- also can use cycle to create iterator from a list instead of using % for mod
+
+

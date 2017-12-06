@@ -1,32 +1,18 @@
-
-def get_max_index(a):
-    max = a[0]
-    maxIndex = 0
-
-    for i in range(len(a)):
-        if a[i] > max:
-            max = a[i]
-            maxIndex = i
-    return max, maxIndex
-
 def redistribute(memory):
-    patterns = []
+    patterns = {}
 
     redist = 0
-    while str(memory) not in patterns:
+    while tuple(memory) not in patterns:
         print("{0} {1}".format(memory, redist))
-        patterns.append(str(memory))
-        max_value, index = get_max_index(memory)
+        patterns[tuple(memory)] = redist
+        redist += 1
+        i, m = max(enumerate(memory), key=lambda k: k[1])
 
-        memory[index] = 0
+        memory[i] = 0
+        for j in range(m):
+            memory[(i+j+1)%len(memory)] += 1
 
-        for i in range(max_value):
-            memory[(index + i + 1)%len(memory)] += 1
-
-        redist +=1
-
-    first = patterns.index(str(memory))
-
+    first = patterns[tuple(memory)]
     return redist - first
 
 
